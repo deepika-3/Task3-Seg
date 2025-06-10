@@ -1,0 +1,10 @@
+Layer,Region Pair,Cosine Similarity
+fifth-last,Tibia ↔ Femur,0.9999804496765137
+fifth-last,Tibia ↔ Background,0.9999864101409912
+fifth-last,Femur ↔ Background,0.9999819993972778
+third-last,Tibia ↔ Femur,0.9999864101409912
+third-last,Tibia ↔ Background,0.9999890327453613
+third-last,Femur ↔ Background,0.999983549118042
+last,Tibia ↔ Femur,0.9999935030937195
+last,Tibia ↔ Background,0.9999935030937195
+last,Femur ↔ Background,0.9999849796295166
