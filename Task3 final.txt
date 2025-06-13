@@ -1,0 +1,48 @@
+
+1. Segmentation-Based Splitting
+
+I have used the segmentation mask to extract voxel-wise binary masks for each region. Because of larger memory, I couldn't able to upload
+this on GitHub, So I'm sending this through the mail. 
+
+2. Conversion of 2D DenseNet121 to 3D
+
+Given  pretrained model is loaded, 2D DenseNet121 from torchvision.
+
+import torchvision.models as models  
+model_2d = models.densenet121(pretrained=True)
+Procedure followed:
+
+Replaced all 2D convolutional layers with 3D versions.
+
+For each Conv2D weight tensor (out_ch, in_ch, h, w),
+
+Repeated it along a new depth axis to form (out_ch, in_ch, d, h, w)
+
+Normalized the weights by dividing by depth to maintain scale.
+I have just printed the converted model architecture roughly.
+
+3. Feature Extraction:
+
+Given Input: 3D CT volume and corresponding regional masks (Tibia, Femur, Background).
+
+Moved through the full 3D volume through the inflated 3D CNN.
+
+Extracted feature maps from the 3 layers.
+
+Global Average Pooling  applied over masked regions to get fixed-size feature vectors for each anatomical region as per the instructions.
+
+4. Feature Comparison
+Compared the features between anatomical regions.
+
+
+Tibia ↔ Femur
+
+Tibia ↔ Background
+
+Femur ↔ Backgroud
+
+calculated Computed cosine similarity between the extracted feature vectors for each pair, and saved them into CSV file, 
+so that duplicate X-ray can be found or any change in the before after X-rays can be recognised.
+
+
+
